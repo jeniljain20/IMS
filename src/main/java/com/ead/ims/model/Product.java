@@ -1,15 +1,31 @@
 package com.ead.ims.model;
 
+/*import org.springframework.data.couchbase.core.mapping.Document;
+
+import com.couchbase.client.java.repository.annotation.Field;
+import com.couchbase.client.java.repository.annotation.Id;
+
+@Document */
 public class Product {
+	/* @Id */
 	private String product_id;
+	//@Field
 	private String product;
+	//@Field
 	private String model;
+	//@Field
 	private String manufacture;
+	//@Field
 	private String type_code;
+	//@Field
 	private int location_code;
+	//@Field
 	private float msrp;
+	//@Field
 	private float unit_cost;
+	//@Field
 	private float discount_rate;
+	//@Field
 	private int stock_qty;
 	
 	public Product(){}

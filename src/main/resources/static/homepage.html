@@ -1,14 +1,37 @@
-<!Doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>IMS</title>
-<h1 style="text-align:center;">Inventory Management System</h1>
+  <title>Inventory Management System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<p>Welcome to homepage1</p>
-<form action="">
-  Select a file: <input type="file" name="myFile"><br><br>
-  <input type="submit">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Inventory Management System</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Upload</a></li>
+      <li><a href="#">Search</a></li>
+      <li><a href="#">Show</a></li>
+      <li><a href="#">Update</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+  <p style="text-align:center"><h1>Import Data</h1></p>
+  <form method="POST" action="/uploadcsv" enctype="multipart/form-data">
+  Select a file: <input type="file" name="file" accept=".csv" multiple ><br><br>
+  <input type="submit" submit="Submit">
 </form>
+</div>
+
 </body>
 </html>
