@@ -27,11 +27,24 @@
   
 <div class="container">
   <p style="text-align:center"><h1>Import Data</h1></p>
-  <form method="POST" action="/uploadcsv" enctype="multipart/form-data">
+  <form id="uploadform" method="POST" action="/uploadcsv" enctype="multipart/form-data">
   Select a file: <input type="file" name="file" accept=".csv" multiple ><br><br>
   <input type="submit" submit="Submit">
 </form>
 </div>
+<script>
+$("#uploadform").on('submit'.(function(e) {
+	$('#uploadform').submit(false);
+	var fdata = $("#specForm").serialize();
+	console.log(fdata);
+	$.ajax({
+		type : $(this).attr('method'), // method attribute of form
+		url : $(this).attr('action'), // action attribute of form
+		data : fdata,
+	})
+return false;
+});
 
+</script>
 </body>
 </html>
