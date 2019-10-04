@@ -39,7 +39,16 @@ public class ProductIMPL implements ProductINF {
 
 	@Override
 	public Product getProductbyID(String product_id) {
-		return null;
+		ArrayList<String> product = new ArrayList<String>();
+		try {
+			showProductbyID = dao.searchProductbyId();
+		} catch (ClassNotFoundException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		} catch (SQLException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		}
+		return showProductbyID;
+	
 	}
 
 	@Override
@@ -69,7 +78,15 @@ public class ProductIMPL implements ProductINF {
 
 	@Override
 	public int deleteProduct(int product_id) {
-		return 0;
+		int num = 0;
+		try {
+			 num = dao.deleteProducts();
+		} catch (ClassNotFoundException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		} catch (SQLException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		}
+		return num;
 	}
 
 	@Override
