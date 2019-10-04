@@ -1,14 +1,14 @@
 package com.ead.ims.util;
 
 public class Dbquery {
-	private String searchProductbyId = "";
-	private String searchProductbyName = "";
-	private String searchProductbyManufacture = "";
-	private String searchProductbyTypeCode = "";
-	private String searchProductbyLocationCode = "";
+	private String searchProductbyId = "select * from Products where product_id = ?";
+	private String searchProductbyName = "select * from Products where product = ?";
+	private String searchProductbyManufacture = "select * from Products where manufacture = ?";
+	private String searchProductbyTypeCode = "select * from Products where type_code = ?";
+	private String searchProductbyLocationCode = "select * from Products where location_code = ?";
 	private String allProducts = "Select * from Products";
 	private String allProductsASC = "";
-	private String allProductsDSC = "";
+	private String allProductsDSC ="Select * from Products order by product";
 	private String addProduct="INSERT INTO Products(product_id, product, model, manufacture, type_code, location_code,msrp,unit_cost,discount_rate,stock_qty) VALUES(?,?,?,?,?,?,?,?,?,?);";
 
 	public String getAddProduct() {
@@ -52,8 +52,8 @@ public class Dbquery {
 	}
 
 	private String updateProduct = "";
-	private String deleteProduct = "";
-	private String insertProduct = "";
+	private String deleteProduct = "delete from Products where product_id = ?";
+	private String insertProduct = ""; //this is the same as add product, can be removed. 
 
 	public String getSearchProductbyId() {
 		return searchProductbyId;
