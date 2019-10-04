@@ -7,7 +7,7 @@ public class Dbquery {
 	private String searchProductbyTypeCode = "select * from Products where type_code = ?";
 	private String searchProductbyLocationCode = "select * from Products where location_code = ?";
 	private String allProducts = "Select * from Products";
-	private String allProductsASC = "";
+	private String allProductsASC = ""; // same as all Products??
 	private String allProductsDSC ="Select * from Products order by product";
 	private String addProduct="INSERT INTO Products(product_id, product, model, manufacture, type_code, location_code,msrp,unit_cost,discount_rate,stock_qty) VALUES(?,?,?,?,?,?,?,?,?,?);";
 
