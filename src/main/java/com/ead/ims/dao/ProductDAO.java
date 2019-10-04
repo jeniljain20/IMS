@@ -76,4 +76,42 @@ boolean status=false;
 	ConnectDatabase.closeConnection();
 	return status;
 }
+	
+	public int deleteProduct()throws ClassNotFoundException,SQLException
+{
+	try {
+	String Prod_ID = "1";
+	statement = connection.createStatement();
+	statement = connection.prepareStatement(query.getDeleteProduct());
+	statement.setString(1,Prod_ID);
+	int numRows = statement.executeUpdate(SQL);
+	}catch(Exception e)
+	{System.out.println("exception"+e);}
+	statement.close();
+	ConnectDatabase.closeConnection();
+	return numRows;
+}
+	
+	public ArrayList<String> searchProductbyId()throws ClassNotFoundException,SQLException
+{
+	ArrayList<String> product = new ArrayList<String>();
+	try {
+	String Prod_ID = "1";
+	statement = connection.createStatement();
+	statement = connection.prepareStatement(query.getSearchProductbyId());
+	statement.setString(1,Prod_ID);
+	resultSet = statement.executeQuery();
+	ResultSetMetaData rsmd = resultSet.getMetaData(); 
+	int columnCount = rsmd.getColumnCount();
+	while (resultSet.next()) {              
+	int i = 1;
+	while(i <= columnCount) {
+	product.add(resultSet.getString(i++));
+	 }}
+	}catch(Exception e)
+	{System.out.println("exception"+e);}
+	statement.close();
+	ConnectDatabase.closeConnection();
+	return product;
+}
 }
