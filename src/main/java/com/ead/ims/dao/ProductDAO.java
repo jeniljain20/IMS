@@ -4,6 +4,7 @@ package com.ead.ims.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -79,12 +80,12 @@ boolean status=false;
 	
 	public int deleteProduct()throws ClassNotFoundException,SQLException
 {
+		int numRows = 0;
 	try {
 	String Prod_ID = "1";
-	statement = connection.createStatement();
 	statement = connection.prepareStatement(query.getDeleteProduct());
 	statement.setString(1,Prod_ID);
-	int numRows = statement.executeUpdate(SQL);
+	numRows = statement.executeUpdate();
 	}catch(Exception e)
 	{System.out.println("exception"+e);}
 	statement.close();
@@ -97,7 +98,6 @@ boolean status=false;
 	ArrayList<String> product = new ArrayList<String>();
 	try {
 	String Prod_ID = "1";
-	statement = connection.createStatement();
 	statement = connection.prepareStatement(query.getSearchProductbyId());
 	statement.setString(1,Prod_ID);
 	resultSet = statement.executeQuery();

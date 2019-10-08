@@ -22,7 +22,6 @@ import org.springframework.ui.Model;
 
 import com.ead.ims.Service.*;
 import com.ead.ims.model.Product;
-//import com.ead.ims.util.Database;
 import com.ead.ims.util.*;
 
 @Controller

@@ -12,7 +12,7 @@ public interface ProductINF {
 	
 	public List<String[]> getAllProductsDesc();
 	
-	public Product getProductbyID(String product_id);
+	public List<String> getProductbyID(String product_id);
 	
 	public Product getProductbyName(String product_name);
 	
