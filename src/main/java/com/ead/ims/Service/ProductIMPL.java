@@ -41,7 +41,7 @@ public class ProductIMPL implements ProductINF {
 	public List<String> getProductbyID(String product_id) {
 		ArrayList<String> showProductbyID = new ArrayList<String>();
 		try {
-			showProductbyID = dao.searchProductbyId();
+			showProductbyID = dao.searchProductbyId(product_id);
 		} catch (ClassNotFoundException exception) {
 			log.info("Exception is :" + exception.getMessage());
 		} catch (SQLException exception) {
@@ -52,23 +52,56 @@ public class ProductIMPL implements ProductINF {
 	}
 
 	@Override
-	public Product getProductbyName(String product_name) {
-		return null;
+	public List<String> getProductbyName(String product_name) {
+		ArrayList<String> showProductbyName = new ArrayList<String>();
+		try {
+			showProductbyName = dao.searchProductbyName(product_name);
+		} catch (ClassNotFoundException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		} catch (SQLException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		}
+		return showProductbyName;
+	
 	}
 
 	@Override
-	public Product getProductbyManufacture(String product_name) {
-		return null;
+	public List<String> getProductbyManufacture(String manuf_name) {
+		ArrayList<String> showProductbyManuf = new ArrayList<String>();
+		try {
+			showProductbyManuf = dao.searchProductbyManuf(manuf_name);
+		} catch (ClassNotFoundException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		} catch (SQLException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		}
+		return showProductbyManuf;
 	}
 
 	@Override
-	public Product getProductbyTypeCode(String type_code) {
-		return null;
+	public List<String> getProductbyTypeCode(String type_code) {
+		ArrayList<String> showProductbyTypecode = new ArrayList<String>();
+		try {
+			showProductbyTypecode = dao.searchProductbyTypecode(type_code);
+		} catch (ClassNotFoundException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		} catch (SQLException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		}
+		return showProductbyTypecode;
 	}
 
 	@Override
-	public Product getProductbyLocationCode(String location_code) {
-		return null;
+	public List<String> getProductbyLocationCode(String location_code) {
+		ArrayList<String> showProductbyLocationcode = new ArrayList<String>();
+		try {
+			showProductbyLocationcode = dao.searchProductbyLocationcode(location_code);
+		} catch (ClassNotFoundException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		} catch (SQLException exception) {
+			log.info("Exception is :" + exception.getMessage());
+		}
+		return showProductbyLocationcode;
 	}
 
 	@Override
@@ -101,5 +134,7 @@ public class ProductIMPL implements ProductINF {
 		}
 		return status;
 	}
+	
+	
 
 }

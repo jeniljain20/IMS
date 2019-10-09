@@ -17,7 +17,7 @@ public class ReadCSV {
         FileReader filereader = new FileReader(filename); 
         CSVParser parser = new CSVParserBuilder().withSeparator(',').build(); 
         CSVReader csvReader = new CSVReaderBuilder(filereader)
-        						  .withSkipLines(1)
+        						  .withSkipLines(0)
                                   .withCSVParser(parser) 
                                   .build(); 
 

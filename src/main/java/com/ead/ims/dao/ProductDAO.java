@@ -93,11 +93,11 @@ boolean status=false;
 	return numRows;
 }
 	
-	public ArrayList<String> searchProductbyId()throws ClassNotFoundException,SQLException
+	public ArrayList<String> searchProductbyId(String product_id)throws ClassNotFoundException,SQLException
 {
 	ArrayList<String> product = new ArrayList<String>();
 	try {
-	String Prod_ID = "1";
+	String Prod_ID = product_id;
 	statement = connection.prepareStatement(query.getSearchProductbyId());
 	statement.setString(1,Prod_ID);
 	resultSet = statement.executeQuery();
@@ -114,4 +114,94 @@ boolean status=false;
 	ConnectDatabase.closeConnection();
 	return product;
 }
+	
+	public ArrayList<String> searchProductbyName(String product_name)throws ClassNotFoundException,SQLException
+	{
+		ArrayList<String> product = new ArrayList<String>();
+		try {
+		String Prod_Name = product_name;
+		statement = connection.prepareStatement(query.getSearchProductbyName());
+		statement.setString(1,Prod_Name);
+		resultSet = statement.executeQuery();
+		ResultSetMetaData rsmd = resultSet.getMetaData(); 
+		int columnCount = rsmd.getColumnCount();
+		while (resultSet.next()) {              
+		int i = 1;
+		while(i <= columnCount) {
+		product.add(resultSet.getString(i++));
+		 }}
+		}catch(Exception e)
+		{System.out.println("exception"+e);}
+		statement.close();
+		ConnectDatabase.closeConnection();
+		return product;
+	}
+	
+	public ArrayList<String> searchProductbyManuf(String manufacture)throws ClassNotFoundException,SQLException
+	{
+		ArrayList<String> product = new ArrayList<String>();
+		try {
+		String manuf_name = manufacture;
+		statement = connection.prepareStatement(query.getSearchProductbyManufacture());
+		statement.setString(1,manuf_name);
+		resultSet = statement.executeQuery();
+		ResultSetMetaData rsmd = resultSet.getMetaData(); 
+		int columnCount = rsmd.getColumnCount();
+		while (resultSet.next()) {              
+		int i = 1;
+		while(i <= columnCount) {
+		product.add(resultSet.getString(i++));
+		 }}
+		}catch(Exception e)
+		{System.out.println("exception"+e);}
+		statement.close();
+		ConnectDatabase.closeConnection();
+		return product;
+	}
+	
+	public ArrayList<String> searchProductbyTypecode(String type_code)throws ClassNotFoundException,SQLException
+	{
+		ArrayList<String> product = new ArrayList<String>();
+		try {
+		String typecode = type_code;
+		statement = connection.prepareStatement(query.getSearchProductbyTypeCode());
+		statement.setString(1,typecode);
+		resultSet = statement.executeQuery();
+		ResultSetMetaData rsmd = resultSet.getMetaData(); 
+		int columnCount = rsmd.getColumnCount();
+		while (resultSet.next()) {              
+		int i = 1;
+		while(i <= columnCount) {
+		product.add(resultSet.getString(i++));
+		 }}
+		}catch(Exception e)
+		{System.out.println("exception"+e);}
+		statement.close();
+		ConnectDatabase.closeConnection();
+		return product;
+	}
+	
+	public ArrayList<String> searchProductbyLocationcode(String location_code)throws ClassNotFoundException,SQLException
+	{
+		ArrayList<String> product = new ArrayList<String>();
+		try {
+		String locationcode = location_code;
+		statement = connection.prepareStatement(query.getSearchProductbyLocationCode());
+		statement.setString(1,locationcode);
+		resultSet = statement.executeQuery();
+		ResultSetMetaData rsmd = resultSet.getMetaData(); 
+		int columnCount = rsmd.getColumnCount();
+		while (resultSet.next()) {              
+		int i = 1;
+		while(i <= columnCount) {
+		product.add(resultSet.getString(i++));
+		 }}
+		}catch(Exception e)
+		{System.out.println("exception"+e);}
+		statement.close();
+		ConnectDatabase.closeConnection();
+		return product;
+	}
 }
+
+

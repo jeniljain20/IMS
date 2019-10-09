@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUpload {
-	private static String TEMP_FOLDER = "C://temp//";
+	private static String TEMP_FOLDER = "C://testproj//";
 
 	public static List<String[]> upload(MultipartFile file){
 	List<String[]> content = null;

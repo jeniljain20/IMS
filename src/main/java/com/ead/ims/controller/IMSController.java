@@ -1,5 +1,6 @@
 package com.ead.ims.controller;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.*;
@@ -53,8 +54,43 @@ public class IMSController {
 
 	@RequestMapping(value = "/uploadcsv")
 	@ResponseBody
-	public List<String[]> singleFileUpload(@RequestParam("file") MultipartFile file) {
-		return FileUpload.upload(file);
+	public List<String[]> singleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+		String TEMP_FOLDER = "C://testproj//";
+		List<String[]> content = null;
+		String line = "";
+        String cvsSplitBy = ",";
+        BufferedReader br = null;
+        byte[] bytes = file.getBytes();
+		Path path = Paths.get(TEMP_FOLDER + file.getOriginalFilename());
+		Files.write(path, bytes);
+		content = ReadCSV.readfile(path.toString());
+		if (file.isEmpty()) {
+
+			return null;
+		}
+
+		try {
+			br = new BufferedReader(new FileReader(path.toString()));
+			while ((line = br.readLine()) != null) {
+				Product temp_prod = new Product();
+				String[] params = line.split(cvsSplitBy);
+				temp_prod.setProduct_id(params[0]);
+				temp_prod.setProduct_name(params[1]);
+				temp_prod.setModel(params[2]);
+				temp_prod.setManufacture(params[3]);
+				temp_prod.setType_code(params[4]);
+				temp_prod.setLocation_code(Integer.parseInt(params[5]));
+				temp_prod.setMsrp(Float.parseFloat(params[6]));
+				temp_prod.setUnit_cost(Float.parseFloat(params[7]));
+				temp_prod.setDiscount_rate(Float.parseFloat(params[8]));
+				temp_prod.setStock_qty(Integer.parseInt(params[9]));
+				insert(temp_prod);
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return content;
 	}
 
 	
@@ -68,22 +104,50 @@ public class IMSController {
 	
 	@RequestMapping(value = "/insert")
 	@ResponseBody
-	public boolean insert() {
+	public boolean insert(Product product) {
 		ProductINF serviceImpl = new ProductIMPL();
-		Product product=new Product();
-		product.setProduct_id("2220220350");
-		product.setProduct_name("Ultrabook");
-		product.setModel("T60");
-		product.setManufacture("Lenovo");
-		product.setType_code("011");
-		product.setLocation_code(000);
-		product.setMsrp(500);
-		product.setUnit_cost(300);
-		product.setDiscount_rate(10.5f);
-		product.setStock_qty(1000);
+			product.setProduct_id(product.getProduct_id());
+			product.setProduct_name(product.getProduct_name());
+			product.setModel(product.getModel());
+			product.setManufacture(product.getManufacture());
+			product.setType_code(product.getType_code());
+			product.setLocation_code(product.getLocation_code());
+			product.setMsrp(product.getMsrp());
+			product.setUnit_cost(product.getUnit_cost());
+			product.setDiscount_rate(product.getDiscount_rate());
+			product.setStock_qty(product.getStock_qty());
 		
 		boolean success = serviceImpl.insertProduct(product);
 		return success;
+	}
+	
+	
+	@RequestMapping(value = "/selectbyid")
+	@ResponseBody
+	public List<String> selectbyid(@RequestParam("prodid") String product_id) {
+		ProductINF serviceImpl = new ProductIMPL();
+		
+		List<String> list = serviceImpl.getProductbyID(product_id);
+		return list;
+	}
+	
+	
+	@RequestMapping(value = "/delete")
+	@ResponseBody
+	public List<String> delete(@RequestParam("prodid") String product_id) {
+		ProductINF serviceImpl = new ProductIMPL();
+		
+		List<String> list = serviceImpl.getProductbyID(product_id);
+		return list;
+	}
+	
+	@RequestMapping(value = "/selectbyname")
+	@ResponseBody
+	public List<String> selectbyname(@RequestParam("prodname") String product_name) {
+		ProductINF serviceImpl = new ProductIMPL();
+		
+		List<String> list = serviceImpl.getProductbyName(product_name);
+		return list;
 	}
 	
 }

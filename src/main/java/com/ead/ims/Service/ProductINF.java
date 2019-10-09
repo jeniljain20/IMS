@@ -14,13 +14,13 @@ public interface ProductINF {
 	
 	public List<String> getProductbyID(String product_id);
 	
-	public Product getProductbyName(String product_name);
+	public List<String> getProductbyName(String product_name);
 	
-	public Product getProductbyManufacture(String product_name);
+	public List<String> getProductbyManufacture(String manuf_name);
 	
-	public Product getProductbyTypeCode(String type_code);
+	public List<String> getProductbyTypeCode(String type_code);
 	
-	public Product getProductbyLocationCode(String location_code);
+	public List<String> getProductbyLocationCode(String location_code);
 	
 	public int updateProduct(Product product);
 	
